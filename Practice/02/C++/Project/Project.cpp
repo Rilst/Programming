@@ -9,6 +9,6 @@ int main()
     A = 3.14;
     B = 3.14;
     std::cout << "A = " << A << " B = " << B << endl;
-    cin.get();
+    system("pause");
 
 }
