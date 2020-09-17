@@ -17,22 +17,34 @@ int main()
     std::cout << "Результат сложения Int(1) + Int(2): "<< A1 + A2 << endl;
     std::cout << "Результат разности Int(1) - Int(2): " << A1 - A2 << endl;
     std::cout << "Результат умножения Int(1) * Int(2): " << A1 * A2 << endl;
-    std::cout << "Результат деления Int(1) / Int(2): " << A1 / A2 << endl;
+    if (A2 > 0)
+        std::cout << "Результат деления Int(1) / Int(2): " << A1 / A2 << endl;
+    else
+        std::cout << "Результат деления Int(1) / Int(2): Бесконечность " << endl;
     std::cout << "=================================================" << endl;
     std::cout << "Результат сложения Int(1) + Double(1): " << A1 + B1 << endl;
     std::cout << "Результат разности Int(1) - Double(1): " << A1 - B1 << endl;
     std::cout << "Результат умножения Int(1) * Double(1): " << A1 * B1 << endl;
-    std::cout << "Результат деления Int(1) / Double(1): " << A1 / B1 << endl;
+    if (B1 > 0)
+        std::cout << "Результат деления Int(1) / Double(1): " << A1 / B1 << endl;
+    else
+        std::cout << "Результат деления Int(1) / Double(1): Бесконечность" << endl;
     std::cout << "=================================================" << endl;
     std::cout << "Результат сложения Double(1) + Int(1): " << B1 + A1 << endl;
     std::cout << "Результат разности Double(1) - Int(1): " << B1 - A1 << endl;
     std::cout << "Результат умножения Double(1) * Int(1): " << B1 * A1 << endl;
-    std::cout << "Результат деления Double(1) / Int(1): " << B1 / A1 << endl;
+    if (A1 > 0)
+        std::cout << "Результат деления Double(1) / Int(1): " << B1 / A1 << endl;
+    else
+        std::cout << "Результат деления Double(1) / Int(1): ∞" << endl;
     std::cout << "=================================================" << endl;
     std::cout << "Результат сложения Double(1) + Double(2): " << B1 + B2 << endl;
     std::cout << "Результат разности Double(1) - Double(2): " << B1 - B2 << endl;
     std::cout << "Результат умножения Double(1) * Double(2): " << B1 * B2 << endl;
-    std::cout << "Результат деления Double(1) / Double(2): " << B1 / B2 << endl;
+    if (B2 > 0)
+        std::cout << "Результат деления Double(1) / Double(2): " << B1 / B2 << endl;
+    else
+        std::cout << "Результат деления Double(1) / Double(2):  Бесконечность" << endl;
     std::cout << "=================================================" << endl;
     
     system("pause");
