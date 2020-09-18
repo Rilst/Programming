@@ -14,7 +14,7 @@ int main()
 
     X = X0 + V0 * t - ((a * t * t) / 2);
 
-    std::cout << "Результат вычислений: " << X << endl;
+    std::cout << X << endl;
 
     system("pause");
 }
