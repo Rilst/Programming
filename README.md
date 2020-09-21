@@ -1,19 +1,9 @@
-# Лабораторные работы
-> Пока пусто :(
-# Практические работы
+# Программирование
 
-№1
-Source: [C++](https://github.com/Rilst/Programming/blob/master/Practice/01/C%2B%2B/Project/Project/Project.cpp)|[Python](https://github.com/Rilst/Programming/blob/master/Practice/01/Python/Project.py)
+Автор: Вакарев Максим
 
-№2
-Source: [C++](https://github.com/Rilst/Programming/blob/master/Practice/02/C%2B%2B/Project/Project.cpp)|[Python](https://github.com/Rilst/Programming/blob/master/Practice/02/Python/Project.py)
+### Первый семестр
 
-№3
-Source: [C++](https://github.com/Rilst/Programming/blob/master/Practice/03/C%2B%2B/Project/Project.cpp)|[Python](https://github.com/Rilst/Programming/blob/master/Practice/03/Python/Project.py)
-
-№4
-Source: [C++](https://github.com/Rilst/Programming/blob/master/Practice/04/C%2B%2B/Project/Project.cpp)|[Python](https://github.com/Rilst/Programming/blob/master/Practice/04/Python/Project.py)
-
-№5
-Source: [C++](https://github.com/Rilst/Programming/blob/master/Practice/05/C%2B%2B/Project/Project.cpp)|[Python](https://github.com/Rilst/Programming/blob/master/Practice/05/Python/Project.py)
-
+| Практические | Лабораторные |
+| ------------ | ------------ |
+| Практическая 1 - [[C++]](./Practice/01/C++/) [[Python]](./Practice/01/Python/) | [Лабораторная 1](./Lab/01/ReadMe.md) |
