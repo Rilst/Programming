@@ -32,7 +32,5 @@
 *.out
 *.app
 
-/.vs
-/Debug/*.ilk
-/Debug/*.pdb
-/Debug
+Debug
+.vs
