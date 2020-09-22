@@ -12,4 +12,5 @@
 | Практическая 4 - [[C++]](./Practice/04/C++/) [[Python]](./Practice/04/Python/) |  |
 | Практическая 5 - [[C++]](./Practice/05/C++/) [[Python]](./Practice/05/Python/) |  |
 | Практическая 6 - [[C++]](./Practice/06/C++/) [Python] |  |
-
+| Практическая 7 - [[C++]](./Practice/07/C++/) [Python] |  |
+| Практическая 8 - [[C++]](./Practice/08/C++/) [Python] |  |
