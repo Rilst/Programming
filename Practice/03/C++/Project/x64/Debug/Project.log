@@ -1,3 +1,0 @@
-﻿  Project.cpp
-E:\Programming\Practice\03\C++\Project\Project.cpp(39,22): warning C4566: символ, представленный универсальным именем символа "\u221E", невозможно представить в текущей кодовой странице (1251)
-  Project.vcxproj -> E:\Programming\Practice\03\C++\x64\Debug\Project.exe
