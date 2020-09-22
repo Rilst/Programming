@@ -26,10 +26,13 @@
 *.a
 *.lib
 
+
 # Executables
 *.exe
 *.out
 *.app
 
-/.vs/
-/Debug/
+/.vs
+/Debug/*.ilk
+/Debug/*.pdb
+/Debug
