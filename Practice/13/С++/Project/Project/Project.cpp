@@ -10,7 +10,6 @@ int main()
 
     std::cout << "Введите целое число больше 1: ";
     std::cin >> a;
-    std::cout << (int)a << std::endl << a << std::endl;
     if ((int)a == a) {
         if (a == 1 || a == 0) std::cout << "Неверно введенно число\n";
         else if (a == 2) std::cout << "Простое\n";
