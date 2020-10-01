@@ -11,8 +11,7 @@ int main()
     int C;
     std::cout << "Введите значение переменной A: "; std::cin >> A;
     std::cout << "Введите значение переменной B: "; std::cin >> B; std::cout << endl;
-    if (isdigit(A) && isdigit(B))
-    {
+
         C = A;
         A = B;
         B = C;
@@ -24,9 +23,6 @@ int main()
         B = B - A;
 
         std::cout << "Результат второго обмена значений, без помощи доп. переменной: A = " << A << "; B = " << B << endl;
-    }
-    else
-        std::cout << "Значения переменных должны быть целым числом!" << endl;
-
+   
      system("pause");
 }
