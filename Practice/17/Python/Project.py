@@ -15,7 +15,6 @@ while i >= 0:
         print("Неправильный ввод")
         exit()
     elif i >= 0:
-        #i = in1
         d = 0
         while d <= 36:
             if allnum[d] == in1:
