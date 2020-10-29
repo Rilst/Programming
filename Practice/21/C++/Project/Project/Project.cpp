@@ -19,7 +19,7 @@ double BMI(double weight, double height) {
 }
 void printBMI(double BMI) {
 	if (BMI < 18.5) std::cout << "Underweight\n";
-	else if (BMI >= 18.5 && BMI < 25.0) std::cout << "Normal weight\n";
+	else if (BMI >= 18.5 && BMI < 25.0) std::cout << "Normal\n";
 	else if (BMI >= 25.0 && BMI < 30.0) std::cout << "Overweight\n";
 	else if (BMI >= 30.0) std::cout << "Obesity\n";
 	return;
