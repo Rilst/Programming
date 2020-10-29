@@ -11,7 +11,7 @@ int main()
 	string k2, k3;
 	vector<string> mass(256);
 	char symbols;
-	
+
 	cin >> n;
 	cin >> k;
 	k2 = k;
@@ -27,15 +27,12 @@ int main()
 				sort(k2.begin(), k2.end());
 				do
 				{	
-					//for (int j = 0; j < k2.length(); j++) {
-						mass[i] = k2;
-				//	}
-	
+					k2.erase(n - int(k.length()));
 					k += k2;
 					sort(k.begin(), k.end());
 					do
 					{
-						//cout << k << '\n';
+						cout << k << '\n';
 					} while (next_permutation(k.begin(), k.end()));
 				} while (next_permutation(k2.begin(), k2.end()));
 			}
