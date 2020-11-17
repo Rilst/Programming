@@ -2,6 +2,7 @@
 #include <json.hpp>
 #include <fstream>
 #include <string>
+#include <iomanip>
 #include <map>
 
 using json = nlohmann::json;
@@ -34,5 +35,5 @@ int main()
     }
 
     std::ofstream OutFile("out.json");
-    OutFile << Jstr2 << std::endl;
+    OutFile << std::setw(2) << Jstr2 << std::endl;
 }
