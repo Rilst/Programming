@@ -152,4 +152,44 @@ int main()
 <p align="center"> <img width="360" height="39" src="./images/02.png"> </p>
 <p align="center"> Рисунок 2 - JSON ответ </p> </br>
 
-5. 
+5. Сделал клиенское приложение с графическим интерфейсом на языке Python (см. рис. 3). Приложение отправляет запрос "/raw" на сервер, в ответ получает данные о температуре и погоде, сохраняет их в кэш.
+Выводит	текст с текущей погодой и температурой округляя ее до целого числа. Для работы с JSON в Python использовался модуль json, для создания графического интерфейса использовалась библиотека tkinter,
+для создания request запросов использовался модуль requests. Код клиенского Python приложения:
+```
+from tkinter import *
+from tkinter.font import BOLD
+import requests 
+import json
+import math
+
+response = requests.get('http://localhost:3000/raw')
+obj = json.loads(response.text)
+def on_click(event):
+    response = requests.get('http://localhost:3000/raw')
+    obj = json.loads(response.text)
+window = Tk()
+window.title("Weather")
+window.resizable(width=False, height=False)
+c = Canvas(window, width=269, height=378, bg='white')
+c.pack()
+c.create_rectangle(0, 0, 269, 74,
+                   fill='orange')
+c.create_rectangle(0, 312, 269, 378,
+                   fill='orange')
+c.create_text(135, 19, 
+              text="Симферополь",
+              justify=CENTER, font=('Verdana', 13, BOLD))
+c.create_text(135, 40, 
+              text=obj[0]['Weather'].encode('l1').decode(),
+              justify=CENTER, font=('Verdana', 13))
+c.create_text(135, 190, 
+              text=(str(round(obj[0]['Temperature']))+u"\u00b0C"),
+              justify=CENTER, font=('Verdana', 60, BOLD))       
+c.bind("<Button-1>", on_click)           
+window.geometry('269x378')
+window.mainloop()
+```
+<p align="center"> <img width="272" height="412" src="./images/03.png"> </p>
+<p align="center"> Рисунок 3 - Интерфейс клиенского приложения </p> </br>
+
+6. Для защиты работы скачал программу ngrok, протестировал ее работоспособность.
