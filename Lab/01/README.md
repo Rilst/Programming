@@ -140,4 +140,5 @@ int main()
    std::cout << "Start server... OK\n";
    Weather.listen("localhost", 3000); // слушаем локалку на 3000 порте
 
-} >
+}
+>
