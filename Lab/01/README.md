@@ -147,10 +147,9 @@ int main()
 }
 ```
 <p align="center"> <img width="300" height="77" src="./images/01.png"> </p>
-<p align="center"> Рисунок 1 - HTML виджет </p>
-
+<p align="center"> Рисунок 1 - HTML виджет </p> </br>
 
 <p align="center"> <img width="360" height="39" src="./images/02.png"> </p>
-<p align="center"> Рисунок 2 - JSON ответ </p>
+<p align="center"> Рисунок 2 - JSON ответ </p> </br>
 
 5. 
