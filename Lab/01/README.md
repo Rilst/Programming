@@ -190,7 +190,7 @@ c.bind("<Button-1>", on_click)
 window.geometry('269x378')
 window.mainloop()
 ```
-<p align="center"> <img width="272" height="412" src="./images/03.png"> </p>
+<p align="center"> <img width="269" height="408" src="./images/03.png"> </p>
 <p align="center"> Рисунок 3 - Интерфейс клиенского приложения </p> </br>
 
 6. Для защиты работы скачал программу ngrok, протестировал ее работоспособность.
