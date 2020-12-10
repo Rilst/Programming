@@ -61,12 +61,8 @@ if int(b) == len(D):
     D1 = D
     ARR = []
     buf = []
-    for i in D:
-        buf.append(i)
-        if math.sqrt(int(b)) == len(buf):
-            ARR.append(buf)
-            buf = []
-            
+    n = math.sqrt(b)
+    ARR = [D[n*i: n*i+n] for i in range(n)]
     ArrPrint(BozoSort(D))
     ArrPrint(BozoSort(D, None, None,False))
     ArrPrint(BozoSort(ARR))
