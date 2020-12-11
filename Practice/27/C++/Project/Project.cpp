@@ -46,6 +46,7 @@ void TopFive(std::vector<int> Array) {
                 if (Buf[j] > Array[i]) {
                     k = j;
                     D = 1;
+                    break;
                 }
             }
             if (D == 1) {
@@ -56,7 +57,8 @@ void TopFive(std::vector<int> Array) {
         else {
             Buf.push_back(Array[i]);
         }
-        VectorPrnt(BublSort(Buf));
+        Buf = BublSort(Buf);
+        VectorPrnt(Buf);
 
     }
 }
