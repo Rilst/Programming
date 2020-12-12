@@ -40,13 +40,18 @@ void print_factorization(unsigned int n) {
     int r = 0;
     for (auto i : Res) {
         if (int(Res.size()) > 1) {
-            if (i.second != 1) std::cout << i.first << "^" << i.second;
-            if (r == 0) {
+            if (i.second != 1) {
+                if (r >= 1) std::cout << "*" << i.first << "^" << i.second;
+                else {
+                    std::cout << i.first << "^" << i.second;
+                    r++;
+                }
+            }
+            else if (Res.find(i.first) == Res.begin()) {
                 std::cout << i.first;
                 r++;
-                continue;
             }
-            if(r > 0) std::cout << "*" << i.first;
+            else std::cout << "*" << i.first;
         }
         else {
             if (i.second != 1) std::cout << i.first << "^" << i.second;
