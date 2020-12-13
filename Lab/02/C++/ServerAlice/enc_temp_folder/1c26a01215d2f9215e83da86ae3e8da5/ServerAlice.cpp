@@ -72,9 +72,9 @@ json GetMain(json req) {
         return Create(STR, State, false, Btns);
     }
 
-    State["Silence"] = req["state"]["session"]["Silence"];
+   /* State["Silence"] = req["state"]["session"]["Silence"];
     State["Check"] = req["state"]["session"]["Check"];
-    State["Mode"] = req["state"]["session"]["Mode"];
+    State["Mode"] = req["state"]["session"]["Mode"];*/
 
     if (req["state"]["session"]["Silence"] == true || req["request"]["payload"]["Silence"] == true) {
         State["Silence"] = true;
@@ -162,9 +162,9 @@ json GetMain(json req) {
                     }
                     STR = "Сумма всех товаров в корзине: " + sum;
                 }
-                else if (BUF.size() == 2 && BUF[0] == u8"покупка" && BUF[1] == u8"завершена") {
+               /* else if (BUF.size() == 2 && BUF[0] == u8"покупка" && BUF[1] == u8"завершена") {
 
-                }
+                }*/
                 return Create(STR, State, false, Btns);
             }
         }
