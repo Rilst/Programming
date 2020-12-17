@@ -12,6 +12,7 @@ using json = nlohmann::json;
 json Create(std::string str, json state, bool session, json buttons) {
     json Responce;
     Responce["response"]["text"] = str;
+    Responce["response"]["tts"] = "sil <[500]>";
     if (state["Silence"] == false)
         Responce["response"]["tts"] = str;
     Responce["response"]["buttons"] = buttons;
@@ -99,7 +100,7 @@ json GetMain(json req) {
                     STR = u8"Команда Удалить из корзины, удаляет указанный вами товар из корзины. \nО чём рассказать еще?";
                 }
                 else if (req["request"]["payload"]["Help"] == "What" || BUF1.size() > 0 && BUF1[0] == u8"что" && BUF1[1] == u8"в" && BUF1[2] == u8"корзине") {
-                    STR = u8"Команда что в корзине, выводит все товары имеюзиеся в корзине. \nО чём рассказать еще?";
+                    STR = u8"Команда что в корзине, выводит все товары имеющиеся в корзине. \nО чём рассказать еще?";
                 }
                 else if (req["request"]["payload"]["Help"] == "Sum" || BUF1.size() > 0 && BUF1.size() == 1 && BUF1[0] == u8"сумма") {
                     STR = u8"Команда сумма, выводит суммарную стоимость всех товаров. \nО чём рассказать еще?";

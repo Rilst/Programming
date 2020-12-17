@@ -88,7 +88,7 @@ def writeinbuf(Res):
                 Itm = FindClearRow(page, 3)
                 page[Itm][3].value = buf[i]["check"][K]["item"]
                 page[Itm][3].alignment = Alignment(horizontal='center', vertical='center')
-                page[Itm][4].value = int(buf[i]["check"][K]["price"])
+                page[Itm][4].value = buf[i]["check"][K]["price"]
                 page[Itm][4].alignment = Alignment(horizontal='center', vertical='center')    
         book.save("data.xlsx")
         buf = []

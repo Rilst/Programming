@@ -73,6 +73,7 @@ using json = nlohmann::json;
 json Create(std::string str, json state, bool session, json buttons) {
     json Responce;
     Responce["response"]["text"] = str;
+	Responce["response"]["tts"] = "sil <[500]>";
     if (state["Silence"] == false)
         Responce["response"]["tts"] = str;
     Responce["response"]["buttons"] = buttons;
