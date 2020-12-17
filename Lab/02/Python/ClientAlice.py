@@ -3,7 +3,7 @@ from datetime import datetime
 import openpyxl
 from openpyxl.styles import Alignment, Font
 
-Buf_Size = 1
+Buf_Size = 2
 buf = []
 
 def FindClearRow(page, col):
