@@ -44,7 +44,7 @@
 ## Выполнение работы
 1. Зарегистрировался на сайте http://yandex.ru/ в сервисе https://dialogs.yandex.ru/ создал новый навык для Яндекс Алисы, основные настройка навыка видно на рисунке 1:
 
-<p align="center"> <img width="300" height="77" src="./images/Основные_настройки.png"> </p>
+<p align="center"> <img width="547" height="586" src="./image/Основные_настройки.png"> </p>
 <p align="center"> Рисунок 1 - Основные настройки навыка в сервисе Яндекс Диалоги </p> </br>
 
 2. Сделал сервер на языке С++, который при запуске ждет запросов от навыка Алисы, сервер отвечает на периодическую проверку от сервиса. При старте новой
@@ -366,25 +366,25 @@ int main() {
     svr.listen("localhost", 3000);         
 }
 ```
-<p align="center"> <img width="300" height="77" src="./images/Добавить_в_корзину.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Добавить_в_корзину.png"> </p>
 <p align="center"> Рисунок 2 - Функция навыка "Добавить в корзину" </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Удачить_из_корзины.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Удачить_из_корзины.png"> </p>
 <p align="center"> Рисунок 3 - Функция навыка "Удалить из корзины" </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Очистить_корзину.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Очистить_корзину.png"> </p>
 <p align="center"> Рисунок 4 - Функция навыка "Очистить корзину" </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Что_в_корзине.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Что_в_корзине.png"> </p>
 <p align="center"> Рисунок 5 - Функция навыка "Что в корзине" </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Сумма.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Сумма.png"> </p>
 <p align="center"> Рисунок 6 - Функция навыка "Сумма" </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Помощь.png"> </p>
+<p align="center"> <img width="441" height="354" src="./image/Помощь.png"> </p>
 <p align="center"> Рисунок 7 - Режим помощи </p> </br>
 
-<p align="center"> <img width="300" height="77" src="./images/Webhooks.png"> </p>
+<p align="center"> <img width="724" height="246" src="./image/Webhooks.png"> </p>
 <p align="center"> Рисунок 8 - Настройка вебхуков </p> </br>
 
 3. Сделал клиенское приложение на языке Python. Приложение ждет POST запрос по адрессу "/", получив его, смотрит JSON ли это, если да то записывает в массив буфер, так же добавляет к каждому элементу JSON массива параметр "datatime" в который записывет текущую дату и время на момент получения данных.
