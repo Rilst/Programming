@@ -141,34 +141,34 @@ json GetMain(json req) {
 
     if (req["session"]["new"] == false) {
             std::vector<std::string> BUF1 = GetCommand(req["request"]["nlu"]["tokens"]);
-            if (BUF1[0] == u8"помощь" && BUF1.size() == 1) State["Mode"] = "Help";
+            if (BUF1.size() == 1 && BUF1[0] == u8"помощь") State["Mode"] = "Help";
 
             if (req["request"]["payload"]["Mode"] == "Help" || State["Mode"] == "Help") {
                 
                 State["Mode"] = "Help";
                 STR = u8"Корзина. Поможет организовать покупки. \nО чём рассказать подробнее?";
 
-                if (BUF1[0] == u8"помощь" && BUF1.size() == 1) STR = u8"Корзина. Поможет организовать покупки. \nО чём рассказать подробнее?";
+                if (BUF1.size() == 1 && BUF1[0] == u8"помощь") STR = u8"Корзина. Поможет организовать покупки. \nО чём рассказать подробнее?";
 
-                else if (req["request"]["payload"]["Help"] == "Add") {
+                else if (req["request"]["payload"]["Help"] == "Add" || BUF1.size() > 0 && BUF1[0] == u8"добавить" && BUF1[1] == u8"в" && BUF1[2] == u8"корзину") {
                     STR = u8"Команда добавить в корзину, добавляет указанный вами товар к вам в корзину. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "Clear") {
+                else if (req["request"]["payload"]["Help"] == "Clear" || BUF1.size() > 0 && BUF1[0] == u8"очистить" && BUF1[1] == u8"корзину") {
                     STR = u8"Команда очистить корзину, удаляет все товары из корзины. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "Del") {
+                else if (req["request"]["payload"]["Help"] == "Del" || BUF1.size() > 0 && BUF1[0] == u8"удалить" && BUF1[1] == u8"из" && BUF1[2] == u8"корзины") {
                     STR = u8"Команда Удалить из корзины, удаляет указанный вами товар из корзины. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "What") {
+                else if (req["request"]["payload"]["Help"] == "What" || BUF1.size() > 0 && BUF1[0] == u8"что" && BUF1[1] == u8"в" && BUF1[2] == u8"корзине") {
                     STR = u8"Команда что в корзине, выводит все товары имеюзиеся в корзине. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "Sum") {
+                else if (req["request"]["payload"]["Help"] == "Sum" || BUF1.size() > 0 && BUF1.size() == 1 && BUF1[0] == u8"сумма") {
                     STR = u8"Команда сумма, выводит суммарную стоимость всех товаров. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "End") {
+                else if (req["request"]["payload"]["Help"] == "End" || BUF1.size() > 0 && BUF1.size() == 2 && BUF1[0] == u8"покупка" && BUF1[1] == u8"завершена") {
                     STR = u8"Команда покупка завершена, завершает покупку. \nО чём рассказать еще?";
                 }
-                else if (req["request"]["payload"]["Help"] == "EndHelp") {
+                else if (req["request"]["payload"]["Help"] == "EndHelp" || BUF1.size() > 0 && BUF1[0] == u8"выйти" && BUF1[1] == u8"из" && BUF1[2] == u8"помощи") {
                     STR = u8"Обращайся ещё!";
                     State["Mode"] = "Main";
                     return Create(STR, State, false, Btns);
@@ -192,16 +192,37 @@ json GetMain(json req) {
                         }
                         else break;
                     }
-                    for (auto i : RESULT) {
-                        RESSTR += i + u8" ";
+                    for (int i = 0; i < RESULT.size(); i++) {
+                        if (i < (RESULT.size() - 1)) {
+                            RESSTR += RESULT.at(i) + u8" ";
+                        }
+                        else {
+                            RESSTR += RESULT.at(i);
+                        }
                     }
                     State["Check"].push_back({ {"item", RESSTR}, {"price", req["request"]["nlu"]["entities"][0]["value"] } });
                     STR = u8"ОК";
                 }
                 else if (BUF[0] == u8"удалить" && BUF[1] == u8"из" && BUF[2] == u8"корзины") {
                     bool OK = false;
+                    std::vector<std::string> RESULT2 = {};
+                    std::string RESSTR2 = "";
+                    for (int i = BUF.size()-1; i > 0; --i) {
+                        if (BUF[i] != u8"корзины") {
+                            RESULT2.insert(RESULT2.begin(), BUF[i]);
+                        }
+                        else break;
+                    }
+                    for (int i = 0; i < RESULT2.size(); i++) {
+                        if (i < (RESULT2.size() - 1)) {
+                            RESSTR2 += RESULT2.at(i) + u8" ";
+                        }
+                        else {
+                            RESSTR2 += RESULT2.at(i);
+                        }
+                    }
                     for (int i = 0; i < State["Check"].size(); i++) {
-                        if (State["Check"][i]["item"] == BUF[3]) {
+                        if (State["Check"][i]["item"] == RESSTR2) {
                             State["Check"].erase(i);
                             OK = true;
                         }
@@ -220,17 +241,17 @@ json GetMain(json req) {
                     else if (State["Check"].size() > 0) {
                         std::stringstream str;
                         for (int i = 0; i < State["Check"].size(); i++){
-                            str << std::string(State["Check"][i]["item"]) << u8" " << std::string(State["Check"][i]["price"]) << u8" рублей" << "\n";
+                            str << std::string(State["Check"][i]["item"]) << u8" " << State["Check"][i]["price"] << u8" рублей" << "\n";
                         }
                         STR = str.str();
                     }
                 }
                 else if (BUF.size() == 1 && BUF[0] == u8"сумма") {
                     int sum = 0;
-                    std::string num;
+                    int num;
                     for (int i = 0; i < State["Check"].size(); i++) {
                         num = State["Check"][i]["price"];
-                        sum += atoi(num.c_str());
+                        sum += num;
                     }
                     STR = u8"Сумма всех товаров в корзине: " + std::to_string(sum) + u8" рублей";
                 }
