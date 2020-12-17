@@ -106,7 +106,6 @@ json GetMain(json req) {
 
     json Btns = json::array();
     Btns[0]["title"] = u8"Молчать";
-    Btns[0]["payload"]["Silence"] = true;
     Btns[1]["title"] = u8"Помощь";
     Btns[1]["payload"]["Mode"] = "Help";
 
@@ -137,34 +136,21 @@ json GetMain(json req) {
     State["Check"] = req["state"]["session"]["Check"];
     State["Mode"] = req["state"]["session"]["Mode"];
 
-    if (req["request"]["payload"]["Silence"] == true) {
-        State["Silence"] = true;
-    }
-    if (req["request"]["payload"]["Silence"] == false) {
-        State["Silence"] = false;
-    }
-
-    if (State["Silence"] == true) {
-        Btns[0]["title"] = u8"Говорить";
-        Btns[0]["payload"]["Silence"] = false;
-    }
-
-    if (State["Silence"] == true) {
-        State["Silence"] = true;
-        STR = u8"Молчу, молчу";
-    }
-    else if (State["Silence"] == false) {
-        State["Silence"] = false;
-        STR = u8"Хорошо";
-    }
+    if (State["Silence"] == false) Btns[0]["title"] = u8"Молчать";
+    else if (State["Silence"] == true) Btns[0]["title"] = u8"Говорить";
 
     if (req["session"]["new"] == false) {
-            if (req["request"]["payload"]["Mode"] == "Help" || req["state"]["session"]["Mode"] == "Help") {
-                State["Mode"] = "Help";
+            std::vector<std::string> BUF1 = GetCommand(req["request"]["nlu"]["tokens"]);
+            if (BUF1[0] == u8"помощь" && BUF1.size() == 1) State["Mode"] = "Help";
 
+            if (req["request"]["payload"]["Mode"] == "Help" || State["Mode"] == "Help") {
+                
+                State["Mode"] = "Help";
                 STR = u8"Корзина. Поможет организовать покупки. \nО чём рассказать подробнее?";
 
-                if (req["request"]["payload"]["Help"] == "Add") {
+                if (BUF1[0] == u8"помощь" && BUF1.size() == 1) STR = u8"Корзина. Поможет организовать покупки. \nО чём рассказать подробнее?";
+
+                else if (req["request"]["payload"]["Help"] == "Add") {
                     STR = u8"Команда добавить в корзину, добавляет указанный вами товар к вам в корзину. \nО чём рассказать еще?";
                 }
                 else if (req["request"]["payload"]["Help"] == "Clear") {
@@ -197,7 +183,19 @@ json GetMain(json req) {
                 std::vector<std::string> BUF = GetCommand(req["request"]["nlu"]["tokens"]);
 
                 if (BUF[0] == u8"добавить" && BUF[1] == u8"в" && BUF[2] == u8"корзину") {
-                    State["Check"].push_back({ {"item", BUF[3]}, {"price", BUF[4] } });
+                    int Start = req["request"]["nlu"]["entities"][0]["tokens"]["start"];
+                    std::vector<std::string> RESULT = {};
+                    std::string RESSTR = "";
+                    for (int i = Start - 1; i > 0; --i) {
+                        if (BUF[i] != u8"корзину") {
+                            RESULT.insert(RESULT.begin(), BUF[i]);
+                        }
+                        else break;
+                    }
+                    for (auto i : RESULT) {
+                        RESSTR += i + u8" ";
+                    }
+                    State["Check"].push_back({ {"item", RESSTR}, {"price", req["request"]["nlu"]["entities"][0]["value"] } });
                     STR = u8"ОК";
                 }
                 else if (BUF[0] == u8"удалить" && BUF[1] == u8"из" && BUF[2] == u8"корзины") {
@@ -277,7 +275,20 @@ json GetMain(json req) {
                     }
                     return Create(STR, State, true, nullptr);
                 }
+                else if (BUF.size() == 1 && BUF[0] == u8"молчать") {
+                    State["Silence"] = true;
+                    Btns[0]["title"] = u8"Говорить";
+                    STR = u8"Молчу, молчу";
+                }
+                else if (BUF.size() == 1 && BUF[0] == u8"говорить") {
+                    State["Silence"] = false;
+                    Btns[0]["title"] = u8"Молчать";
+                    STR = u8"Хорошо";
+                }
                 else STR = u8"Неизвестная команда";
+
+
+
                 return Create(STR, State, false, Btns);
             }
         }
