@@ -366,19 +366,19 @@ int main() {
     svr.listen("localhost", 3000);         
 }
 ```
-<p align="center"> <img width="441" height="354" src="./image/Добавить_в_корзину.png"> </p>
+<p align="center"> <img width="438" height="287" src="./image/Добавить_в_корзину.png"> </p>
 <p align="center"> Рисунок 2 - Функция навыка "Добавить в корзину" </p> </br>
 
-<p align="center"> <img width="441" height="354" src="./image/Удачить_из_корзины.png"> </p>
+<p align="center"> <img width="457" height="348" src="./image/Удачить_из_корзины.png"> </p>
 <p align="center"> Рисунок 3 - Функция навыка "Удалить из корзины" </p> </br>
 
-<p align="center"> <img width="441" height="354" src="./image/Очистить_корзину.png"> </p>
+<p align="center"> <img width="467" height="348" src="./image/Очистить_корзину.png"> </p>
 <p align="center"> Рисунок 4 - Функция навыка "Очистить корзину" </p> </br>
 
-<p align="center"> <img width="441" height="354" src="./image/Что_в_корзине.png"> </p>
+<p align="center"> <img width="472" height="358" src="./image/Что_в_корзине.png"> </p>
 <p align="center"> Рисунок 5 - Функция навыка "Что в корзине" </p> </br>
 
-<p align="center"> <img width="441" height="354" src="./image/Сумма.png"> </p>
+<p align="center"> <img width="462" height="354" src="./image/Сумма.png"> </p>
 <p align="center"> Рисунок 6 - Функция навыка "Сумма" </p> </br>
 
 <p align="center"> <img width="441" height="354" src="./image/Помощь.png"> </p>
@@ -389,7 +389,7 @@ int main() {
 
 3. Сделал клиенское приложение на языке Python. Приложение ждет POST запрос по адрессу "/", получив его, смотрит JSON ли это, если да то записывает в массив буфер, так же добавляет к каждому элементу JSON массива параметр "datatime" в который записывет текущую дату и время на момент получения данных.
 Когда размер массива становиться равным указанному значению, по заданию 1000, приложение с помощью библиотеки Openpyxl пытается открыть Exel документ data.xlsx если он отсутствует создает новый
-в котором находиться шапка документа требуемая по заданию и данные из буфера, распределенные по соответствующим столбцам и ячейкам. Пример Exel документа: [Документ](./Python/data.xlsx)
+в котором находиться шапка документа требуемая по заданию и данные из буфера, распределенные по соответствующим столбцам и ячейкам. Пример Exel документа: [Документ. ](./Python/data.xlsx)
 Код клиенского Python приложения:
 ```Python
 from flask import Flask, request
