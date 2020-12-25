@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
+#include <random>
+#include <ctime>
 
 struct Item {
     enum class ItemType {
@@ -45,5 +47,7 @@ int main()
 
 
 LootBox generateLootBox() {
-
+    srand(time(NULL));
+    LootBox Loot;
+    Loot[0].Runion = 
 }
