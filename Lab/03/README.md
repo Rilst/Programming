@@ -189,7 +189,7 @@ def SetOver():
 def ClearLines(array):
     global Score
     if len(array) > 0:
-        for i in array:
+        for i in set(array):
             col = tiles[i].col
             row = tiles[i].row
             color = tiles[i].color
