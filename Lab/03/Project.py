@@ -173,6 +173,8 @@ def SearchLines():
             res = []
             for j in list(bufColors)[get_number(i, bufColors):]:
                 if bufColors[j] != None:
+                    if len(res) == 5:
+                        break
                     if bufColors[i] == bufColors[j]:
                         res.append(j)
                     else:
@@ -201,6 +203,8 @@ def SearchLines():
                 #print("=================================================")
                 #print("I:", bufColors[i], "J:", bufColors[j])
                 if bufColors[j] != None:
+                    if len(res) == 5:
+                            break
                     if bufColors[i] == bufColors[j]:
                         res.append(j)
                     else:
@@ -236,6 +240,8 @@ def SearchLines():
                 res = []
                 for j in list(bufColors)[get_number(i, bufColors):]:
                     if bufColors[j] != None:
+                        if len(res) == 5:
+                            break
                         if bufColors[i] == bufColors[j]:
                             res.append(j)
                         else:
