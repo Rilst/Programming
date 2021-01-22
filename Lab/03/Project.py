@@ -83,6 +83,22 @@ def CreateTile():
     for i in coordsFree:
         tiles[repr(i)].place(x=68*i[0], y=68*i[1])
 
+def ClearTile():
+    global coordsFree
+    global tiles
+    print(len(coordsAll))
+    for col in range(9):
+        buff = []
+        for row in range(9):
+            tiles[repr([col, row])].config(image = tileImg)
+            tiles[repr([col, row])].color = None
+            coordsFree.append([col, row])
+            buff.append(repr([col, row]))
+        f = copy.deepcopy(buff)
+        coordsAll.append(f)
+        buff.clear()
+
+
 def CreateBallsImg():
     global BallsImg
     global ActiveBallsImg
@@ -134,12 +150,9 @@ def ClearLines(array):
             col = tiles[i].col
             row = tiles[i].row
             color = tiles[i].color
-            tiles[i] = Label(root, image = tileImg, borderwidth=0)
-            tiles[i].row = row
-            tiles[i].col = col
+            
+            tiles[i].config(image = tileImg)
             tiles[i].color = None
-            tiles[i].bind("<Button-1>", SetActive)
-            tiles[i].place(x=68*col, y=68*row)
             print("balls coords ============================================================")
             print(coordsBalls)
             print("delete:", [col, row], ":", color)
@@ -320,12 +333,7 @@ def SetActive(event):
     
     if GameOver == False:
         if Selected == False and ([event.widget.col, event.widget.row] in coordsBalls):
-            tiles[repr([event.widget.col, event.widget.row])] = Label(root, image = ActiveBallsImg[event.widget.color], borderwidth=0)
-            tiles[repr([event.widget.col, event.widget.row])].row = event.widget.row
-            tiles[repr([event.widget.col, event.widget.row])].col = event.widget.col
-            tiles[repr([event.widget.col, event.widget.row])].color = event.widget.color
-            tiles[repr([event.widget.col, event.widget.row])].bind("<Button-1>", SetActive)
-            tiles[repr([event.widget.col, event.widget.row])].place(x=68*event.widget.col, y=68*event.widget.row)
+            tiles[repr([event.widget.col, event.widget.row])].config(image = ActiveBallsImg[event.widget.color])
             Selected = True
             SelectedBall = {'row': event.widget.row, 'col': event.widget.col, 'color': event.widget.color}
             
@@ -337,22 +345,15 @@ def SetActive(event):
                 Moveble = False
                 
             if Moveble == True:
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])] = Label(root, image = tileImg, borderwidth=0)
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].row = SelectedBall['row']
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].col = SelectedBall['col']
+                tiles[repr([SelectedBall['col'],SelectedBall['row']])].config(image = tileImg)
                 tiles[repr([SelectedBall['col'],SelectedBall['row']])].color = None
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].bind("<Button-1>", SetActive)
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].place(x=68*SelectedBall['col'], y=68*SelectedBall['row'])
+                
                 coordsBalls.remove([SelectedBall['col'],SelectedBall['row']])
                 coordsBalls.append([event.widget.col, event.widget.row])
                 
        
-                tiles[repr([event.widget.col, event.widget.row])] = Label(root, image = BallsImg[SelectedBall['color']], borderwidth=0)
-                tiles[repr([event.widget.col, event.widget.row])].row = event.widget.row
-                tiles[repr([event.widget.col, event.widget.row])].col = event.widget.col
+                tiles[repr([event.widget.col, event.widget.row])].config(image = BallsImg[SelectedBall['color']])
                 tiles[repr([event.widget.col, event.widget.row])].color = SelectedBall['color']
-                tiles[repr([event.widget.col, event.widget.row])].bind("<Button-1>", SetActive)
-                tiles[repr([event.widget.col, event.widget.row])].place(x=68*event.widget.col, y=68*event.widget.row)
                 coordsFree.remove([event.widget.col, event.widget.row])
                 coordsFree.append([SelectedBall['col'],SelectedBall['row']])
                     
@@ -365,40 +366,21 @@ def SetActive(event):
                 CreateBall()
                 
             elif Moveble == False:
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])] = Label(root, image = BallsImg[SelectedBall['color']], borderwidth=0)
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].row = SelectedBall['row']
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].col = SelectedBall['col']
+                tiles[repr([SelectedBall['col'],SelectedBall['row']])].config(image = BallsImg[SelectedBall['color']])
                 tiles[repr([SelectedBall['col'],SelectedBall['row']])].color = SelectedBall['color']
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].bind("<Button-1>", SetActive)
-                tiles[repr([SelectedBall['col'],SelectedBall['row']])].place(x=68*SelectedBall['col'], y=68*SelectedBall['row'])
                 Selected = False
                 SelectedBall.clear() 
                 
         elif Selected == True and ([event.widget.col, event.widget.row] in coordsBalls) and ([SelectedBall['col'],SelectedBall['row']] == [event.widget.col, event.widget.row]):
-            tiles[repr([event.widget.col, event.widget.row])] = Label(root, image = BallsImg[event.widget.color], borderwidth=0)
-            tiles[repr([event.widget.col, event.widget.row])].row = event.widget.row
-            tiles[repr([event.widget.col, event.widget.row])].col = event.widget.col
-            tiles[repr([event.widget.col, event.widget.row])].color = event.widget.color
-            tiles[repr([event.widget.col, event.widget.row])].bind("<Button-1>", SetActive)
-            tiles[repr([event.widget.col, event.widget.row])].place(x=68*event.widget.col, y=68*event.widget.row)
+            tiles[repr([event.widget.col, event.widget.row])].config(image = BallsImg[event.widget.color])
             Selected = False
             SelectedBall.clear()
             
         elif Selected == True and ([event.widget.col, event.widget.row] in coordsBalls) and ([SelectedBall['col'],SelectedBall['row']] != [event.widget.col, event.widget.row]):
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])] = Label(root, image = BallsImg[SelectedBall['color']], borderwidth=0)
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])].row = SelectedBall['row']
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])].col = SelectedBall['col']
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])].color = SelectedBall['color']
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])].bind("<Button-1>", SetActive)
-            tiles[repr([SelectedBall['col'],SelectedBall['row']])].place(x=68*SelectedBall['col'], y=68*SelectedBall['row'])
+            tiles[repr([SelectedBall['col'],SelectedBall['row']])].config(image = BallsImg[SelectedBall['color']])
             SelectedBall.clear()
             
-            tiles[repr([event.widget.col, event.widget.row])] = Label(root, image = ActiveBallsImg[event.widget.color], borderwidth=0)
-            tiles[repr([event.widget.col, event.widget.row])].row = event.widget.row
-            tiles[repr([event.widget.col, event.widget.row])].col = event.widget.col
-            tiles[repr([event.widget.col, event.widget.row])].color = event.widget.color
-            tiles[repr([event.widget.col, event.widget.row])].bind("<Button-1>", SetActive)
-            tiles[repr([event.widget.col, event.widget.row])].place(x=68*event.widget.col, y=68*event.widget.row)
+            tiles[repr([event.widget.col, event.widget.row])].config(image = ActiveBallsImg[event.widget.color])
             SelectedBall = {'row': event.widget.row, 'col': event.widget.col, 'color': event.widget.color}
             Selected = True
         
@@ -422,12 +404,8 @@ def CreateBall():
             row = coord[1]
         
                
-            tiles[repr([col, row])] = Label(root, image = BallsImg[Buffer[R]], borderwidth=0)
-            tiles[repr([col, row])].bind("<Button-1>", SetActive)
-            tiles[repr([col, row])].row = row
-            tiles[repr([col, row])].col = col
+            tiles[repr([col, row])].config(image = BallsImg[Buffer[R]])
             tiles[repr([col, row])].color = Buffer[R]
-            tiles[repr([col, row])].place(x=68*col, y=68*row)
             coordsFree.remove([col, row])
             coordsBalls.append([col, row])
         CreateBuffer()
@@ -440,12 +418,9 @@ def CreateBall():
             row = coord[1]
         
                
-            tiles[repr([col, row])] = Label(root, image = BallsImg[Buffer[R]], borderwidth=0)
-            tiles[repr([col, row])].bind("<Button-1>", SetActive)
-            tiles[repr([col, row])].row = row
-            tiles[repr([col, row])].col = col
+            tiles[repr([col, row])].config(image = BallsImg[Buffer[R]])
             tiles[repr([col, row])].color = Buffer[R]
-            tiles[repr([col, row])].place(x=68*col, y=68*row)
+            
             coordsFree.remove([col, row])
             coordsBalls.append([col, row])
         CreateBuffer()
@@ -456,16 +431,21 @@ def SetNewGame():
     global Score
     global Moveble
     global GameOver
+    global Selected
     
+    coordsAll.clear()
     coordsFree.clear()
     coordsBalls.clear()
-    CreateTile()
+    SelectedBall.clear()
+    ClearTile()
     CreateBall()
     c.itemconfigure(gameover, image = '')
     GameOver = False
     Moveble = False
+    Selected = False
     Score = 0
     c.itemconfigure(score_text, text = Score)
+    print(len(coordsAll))
     
 
 
