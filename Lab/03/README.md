@@ -145,18 +145,13 @@ def CreateTile():
 def ClearTile():
     global coordsFree
     global tiles
-    print(len(coordsAll))
+
     for col in range(9):
-        buff = []
         for row in range(9):
             tiles[repr([col, row])].config(image = tileImg)
             tiles[repr([col, row])].color = None
             coordsFree.append([col, row])
-            buff.append(repr([col, row]))
-        f = copy.deepcopy(buff)
-        coordsAll.append(f)
-        buff.clear()
-
+        
 
 def CreateBallsImg():
     global BallsImg
