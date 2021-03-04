@@ -87,28 +87,28 @@ void set(IntArray& arr, int index, int value){
 void print(IntArray* arr){
     cout << "[";
     for (int i = 0; i < (arr->size)-1; i++){
-        cout << arr->data[i] << ", ";
+        cout << get(arr, i) << ", ";
     }
-    cout << arr->data[(arr->size)-1] << "]\n";
+    cout << get(arr, (arr->size)-1) << "]\n";
 }
 void print(IntArray& arr){
     cout << "[";
     for (int i = 0; i < (arr.size)-1; i++){
-        cout << arr.data[i] << ", ";
+        cout << get(arr, i) << ", ";
     }
-    cout << arr.data[(arr.size)-1] << "]\n";
+    cout <<get(arr, (arr.size)-1) << "]\n";
 }
 void resize(IntArray* arr, int newSize){
     int* newarr = new int[newSize];
 
     if (newSize < arr->size){
         for (int i = 0; i < newSize; i++){
-            newarr[i] = arr->data[i];
+            newarr[i] = get(arr, i);
         }
     }
     else if (newSize >= arr->size){
         for (int i = 0; i < newSize; i++){
-            if(i < (arr->size)) newarr[i] = arr->data[i];
+            if(i < (arr->size)) newarr[i] = get(arr, i);
             else newarr[i] = 0;
         }
     }
@@ -123,12 +123,12 @@ void resize(IntArray& arr, int newSize){
 
     if (newSize < arr.size){
         for (int i = 0; i < newSize; i++){
-            newarr[i] = arr.data[i];
+            newarr[i] = get(arr, i);
         }
     }
     else if (newSize >= arr.size){
         for (int i = 0; i < newSize; i++){
-            if(i < (arr.size)) newarr[i] = arr.data[i];
+            if(i < (arr.size)) newarr[i] = get(arr, i);
             else newarr[i] = 0;
         }
     }
